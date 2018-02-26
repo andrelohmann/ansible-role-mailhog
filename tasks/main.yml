@@ -1,5 +1,5 @@
 ---
-- nmame: create mailhog directory
+- name: create mailhog directory
   file:
     path: "{{ mailhog_path }}"
     state: directory
