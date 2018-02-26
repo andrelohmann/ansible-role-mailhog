@@ -1,0 +1,25 @@
+---
+
+- name: Download MailHog
+  get_url:
+    url: "https://github.com/mailhog/MailHog/releases/download/{{ mailhog_release }}/MailHog_linux_amd64"
+    dest: "{{ mailhog_path }}/mailhog"
+    mode: 0755
+
+- name: add mailhog systemd unit file
+  template:
+    src: mailhog.service.j2
+    dest: /etc/systemd/system/mailhog.service
+    mode: 0644
+
+- name: enable mailhog
+  systemd:
+    name: mailhog
+    enabled: yes
+
+- name: start mailhog
+  systemd:
+    name: mailhog
+    state: started
+
+...
