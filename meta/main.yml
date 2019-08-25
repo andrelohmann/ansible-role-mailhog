@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: mailhog
   author: andrelohmann
   description: ansible galaxy role to install mailhog
   company: smartformer UG

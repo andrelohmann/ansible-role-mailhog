@@ -4,7 +4,7 @@
     path: "{{ mailhog_path }}"
     state: directory
     mode: 0644
-    
+
 - name: Download MailHog
   get_url:
     url: "https://github.com/mailhog/MailHog/releases/download/{{ mailhog_release }}/MailHog_linux_amd64"
@@ -16,6 +16,10 @@
     src: mailhog.service.j2
     dest: /etc/systemd/system/mailhog.service
     mode: 0644
+
+- name: just force systemd to reread configs
+  systemd:
+    daemon_reload: yes
 
 - name: enable mailhog
   systemd:
