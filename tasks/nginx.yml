@@ -1,0 +1,41 @@
+---
+
+- block:
+
+  - name: install nginx
+    apt:
+      name: "{{ packages }}"
+      state: latest
+      dpkg_options: 'force-confnew,force-confdef'
+      autoclean: yes
+      autoremove: yes
+      update_cache: yes
+      cache_valid_time: 3600
+    vars:
+      packages:
+      - nginx
+
+  - name: add mailhog proxy config
+    template:
+      src: mailhog.nginx.conf
+      dest: /etc/nginx/sites-available/mailhog.conf
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: create a symbolic link for mailhog.conf
+    file:
+      src: /etc/nginx/sites-available/mailhog.conf
+      dest: /etc/nginx/sites-enabled/mailhog.conf
+      owner: root
+      group: root
+      state: link
+
+  - name: restart nginx
+    systemd:
+      name: nginx
+      state: restarted
+
+  when: mailhog_proxy_nginx|bool and mailhog_proxy_domain is defined
+
+...

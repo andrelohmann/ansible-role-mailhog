@@ -13,7 +13,7 @@
 
 - name: add mailhog systemd unit file
   template:
-    src: mailhog.service.j2
+    src: mailhog.service
     dest: /etc/systemd/system/mailhog.service
     mode: 0644
 
@@ -30,5 +30,13 @@
   systemd:
     name: mailhog
     state: started
+
+- name: setup apache proxy
+  include: apache.yml
+  when: mailhog_proxy_apache|bool
+
+- name: setup nginx proxy
+  include: nginx.yml
+  when: mailhog_proxy_nginx|bool
 
 ...
