@@ -2,57 +2,57 @@
 
 - block:
 
-  - name: install apache
-    apt:
+  - name: Install apache
+    ansible.builtin.apt:
       name: "{{ packages }}"
-      state: latest
+      state: present
       dpkg_options: 'force-confnew,force-confdef'
-      autoclean: yes
-      autoremove: yes
-      update_cache: yes
+      autoclean: true
+      autoremove: true
+      update_cache: true
       cache_valid_time: 3600
     vars:
       packages:
       - apache2
 
-  - name: add mailhog proxy config
-    template:
+  - name: Add mailhog proxy config
+    ansible.builtin.template:
       src: mailhog.apache.conf
       dest: /etc/apache2/sites-available/mailhog.conf
       owner: root
       group: root
       mode: 0644
 
-  - name: enable rewrite module
-    apache2_module:
+  - name: Enable rewrite module
+    community.general.apache2_module:
       state: present
       name: rewrite
 
-  - name: enable proxy module
-    apache2_module:
+  - name: Enable proxy module
+    community.general.apache2_module:
       state: present
       name: proxy
 
-  - name: enable proxy_balancer module
-    apache2_module:
+  - name: Enable proxy_balancer module
+    community.general.apache2_module:
       state: present
       name: proxy_balancer
 
-  - name: enable proxy_http module
-    apache2_module:
+  - name: Enable proxy_http module
+    community.general.apache2_module:
       state: present
       name: proxy_http
 
-  - name: enable proxy_http module
-    apache2_module:
+  - name: Enable proxy_http module
+    community.general.apache2_module:
       state: present
       name: proxy_wstunnel
 
-  - name: a2ensite mail
-    command: a2ensite mailhog.conf
+  - name: Activate a2ensite mail
+    ansible.builtin.command: a2ensite mailhog.conf
 
-  - name: restart apache2
-    systemd:
+  - name: Restart apache2
+    ansible.builtin.systemd:
       name: apache2
       state: restarted
 

@@ -2,37 +2,37 @@
 
 - block:
 
-  - name: install nginx
-    apt:
+  - name: Install nginx
+    ansible.builtin.apt:
       name: "{{ packages }}"
       state: latest
       dpkg_options: 'force-confnew,force-confdef'
-      autoclean: yes
-      autoremove: yes
-      update_cache: yes
+      autoclean: true
+      autoremove: true
+      update_cache: true
       cache_valid_time: 3600
     vars:
       packages:
       - nginx
 
-  - name: add mailhog proxy config
-    template:
+  - name: Add mailhog proxy config
+    ansible.builtin.template:
       src: mailhog.nginx.conf
       dest: /etc/nginx/sites-available/mailhog.conf
       owner: root
       group: root
       mode: 0644
 
-  - name: create a symbolic link for mailhog.conf
-    file:
+  - name: Create a symbolic link for mailhog.conf
+    ansible.builtin.file:
       src: /etc/nginx/sites-available/mailhog.conf
       dest: /etc/nginx/sites-enabled/mailhog.conf
       owner: root
       group: root
       state: link
 
-  - name: restart nginx
-    systemd:
+  - name: Restart nginx
+    ansible.builtin.systemd:
       name: nginx
       state: restarted
 
