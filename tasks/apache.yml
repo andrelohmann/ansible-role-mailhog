@@ -63,5 +63,6 @@
     ansible.builtin.systemd:
       name: apache2
       state: restarted
+    changed_when: file_status.stat.exists is false
 
 ...

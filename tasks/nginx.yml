@@ -25,6 +25,11 @@
       group: root
       mode: 0644
 
+  - name: Check for /etc/nginx/sites-enabled/mailhog.conf
+    ansible.builtin.stat:
+      path: /etc/nginx/sites-enabled/mailhog.conf
+    register: file_status
+
   - name: Create a symbolic link for mailhog.conf
     ansible.builtin.file:
       src: /etc/nginx/sites-available/mailhog.conf
@@ -37,5 +42,6 @@
     ansible.builtin.systemd:
       name: nginx
       state: restarted
+    changed_when: file_status.stat.exists is false
 
 ...
