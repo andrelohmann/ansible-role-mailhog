@@ -1,11 +1,13 @@
 ---
 
-- block:
+- name: Nginx proxy Setup
+  when: mailhog_proxy_nginx|bool and mailhog_proxy_domain is defined
+  block:
 
   - name: Install nginx
     ansible.builtin.apt:
       name: "{{ packages }}"
-      state: latest
+      state: present
       dpkg_options: 'force-confnew,force-confdef'
       autoclean: true
       autoremove: true
@@ -35,7 +37,5 @@
     ansible.builtin.systemd:
       name: nginx
       state: restarted
-
-  when: mailhog_proxy_nginx|bool and mailhog_proxy_domain is defined
 
 ...

@@ -18,6 +18,18 @@ The default set of variables defines the the settings, mailhog will be started w
     mailhog_path: /opt/mailhog
     mailhog_release: v1.0.1
 
+By setting the following additional variables, you can proxy mailhog behind apache
+
+    mailhog_proxy_apache: true
+    mailhog_proxy_domain: _your.mailghog.domain_
+    mailhog_proxy_port: 80
+
+or nginx
+
+    mailhog_proxy_nginx: true
+    mailhog_proxy_domain: _your.mailghog.domain_
+    mailhog_proxy_port: 80    
+
 Example Playbook
 ----------------
 

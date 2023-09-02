@@ -21,5 +21,5 @@ The vagrant role will be applied automatically during the vagrant up process.
 ```
 vagrant ssh
 cd /etc/ansible/roles/ansible-role-mailhog
-molecule test
+molecule test --all
 ```

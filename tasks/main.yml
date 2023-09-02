@@ -33,11 +33,11 @@
     state: started
 
 - name: Setup apache proxy
-  ansible.builtin.include: apache.yml
-  when: mailhog_proxy_apache|bool
+  ansible.builtin.include_tasks: apache.yml
+  when: mailhog_proxy_apache | bool
 
 - name: Setup nginx proxy
-  ansible.builtin.include: nginx.yml
-  when: mailhog_proxy_nginx|bool
+  ansible.builtin.include_tasks: nginx.yml
+  when: mailhog_proxy_nginx | bool
 
 ...
