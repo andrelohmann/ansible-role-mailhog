@@ -35,7 +35,7 @@
 
   - name: Assert api_response was successfull
     ansible.builtin.assert:
-      that: api_response.status == 200 and
+      that: api_response.status == 200
 
   - name: Assert api_response was successfull
     ansible.builtin.assert:
