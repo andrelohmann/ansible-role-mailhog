@@ -11,9 +11,9 @@
       name: "mailhog.service"
     register: mailhog_service_status
 
-  - name: dump mailhog service
-    ansible.builtin.debug:
-      var: mailhog_service_status
+  # - name: dump mailhog service
+  #   ansible.builtin.debug:
+  #     var: mailhog_service_status
 
   - name: Assert mailhog.service is enabled
     ansible.builtin.assert:
