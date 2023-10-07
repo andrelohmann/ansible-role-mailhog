@@ -2,7 +2,6 @@
 galaxy_info:
   role_name: mailhog
   author: andrelohmann
-  namespace: andrelohmann
   description: ansible galaxy role to install mailhog
   company: CloudSails GmbH
 
