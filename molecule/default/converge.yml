@@ -1,4 +1,5 @@
 ---
+
 - name: Converge
   hosts: all
   vars:
@@ -10,4 +11,5 @@
   - name: "Include andrelohmann.mailhog"
     include_role:
       name: "andrelohmann.mailhog"
+
 ...
