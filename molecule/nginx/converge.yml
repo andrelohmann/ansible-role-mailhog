@@ -1,6 +1,8 @@
 ---
 - name: Converge nginx
   hosts: all
+  become: true
+  become_method: sudo
   vars:
     mailhog_smtp_port: 1025
     mailhog_web_port: 8025
