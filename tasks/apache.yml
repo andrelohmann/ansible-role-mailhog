@@ -23,7 +23,7 @@
       dest: /etc/apache2/sites-available/mailhog.conf
       owner: root
       group: root
-      mode: 0644
+      mode: "0644"
 
   - name: Enable rewrite module
     community.general.apache2_module:
