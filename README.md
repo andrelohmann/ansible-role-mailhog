@@ -102,7 +102,7 @@ code .
 yamllint .
 ansible-lint .
 molecule create
-molecule test
+molecule test --all
 ```
 
 #### Vagrant + Virtualbox
@@ -128,7 +128,7 @@ cd /etc/ansible/roles/ansible-role- [tab]
 yamllint .
 ansible-lint .
 molecule create
-molecule test
+molecule test --all
 ```
 
 ### Build and Release process
