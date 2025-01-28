@@ -2,7 +2,7 @@
 - name: Converge nginx
   hosts: all
   become: true
-  become_method: sudo
+  become_method: ansible.builtin.sudo
   vars:
     mailhog_smtp_port: 1025
     mailhog_web_port: 8025
@@ -11,7 +11,7 @@
     mailhog_proxy_nginx: true
     mailhog_proxy_domain: mailhog.lokal
   tasks:
-  - name: "Include andrelohmann.mailhog"
-    include_role:
+  - name: Include andrelohmann.mailhog
+    ansible.builtin.include_role:
       name: "andrelohmann.mailhog"
 ...
